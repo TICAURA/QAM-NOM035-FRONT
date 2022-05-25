@@ -1,0 +1,29 @@
+<ng-container *ngIf="showTable">
+    <div class="table-responsive">
+        
+        <div class="container-fluid mb-3"><h1 class="text-center color-titulo font-weight-bold">Cuestionarios</h1></div>
+
+        <div class="row">
+                <ng-container *ngFor="let cuestionario of cuestionarios">
+                    <div class="col-xl-6 col-md-12 mb-3">
+                    <div class="card card-colors">
+                        <div class="card-body">
+                        <h5 class="card-title">{{cuestionario.nombre}}</h5>
+                        <br>
+                        <p class="card-text">{{cuestionario.descripcion}}</p>
+                        <button (click)="mostrarPreguntas(cuestionario.id)" [ngClass]="['w-100','btn',cuestionario.total === cuestionario.respondidas? 'color-verde' : 'color-amarillo']">
+                            {{"Ingresar "+cuestionario.respondidas+"/"+cuestionario.total}}
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                </ng-container>
+          </div>
+            
+        </div>
+        
+</ng-container>
+
+<ng-container  *ngIf="!showTable">
+    <div class="container p-5 my-3 color-error"><p class="text-center font-weight-bold">{{errorMessage}}</p></div>
+</ng-container>

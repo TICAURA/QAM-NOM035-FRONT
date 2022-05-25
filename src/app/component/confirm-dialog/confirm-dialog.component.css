@@ -1,0 +1,25 @@
+mat-dialog-container{
+    padding: 0px !important;
+}
+ 
+
+.boton-general{
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    white-space: break-spaces;
+}
+.boton-general:hover{
+    color: white;
+    
+}
+
+.color-amarillo{
+    background-color: #f1a83d;
+    border-color: #f1a83d;
+}
+.color-amarillo:hover{
+    background-color: #d49535;
+    border-color: #d49535;
+    
+}

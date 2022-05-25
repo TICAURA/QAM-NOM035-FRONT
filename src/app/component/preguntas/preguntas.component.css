@@ -1,0 +1,80 @@
+.color-gris{
+    color: #fff;
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+    font-weight: normal;
+   
+}
+
+
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+.box-flex{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.color-error{
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+    color: #4d4d4d;
+    font-weight: normal;
+}
+
+.button-size{
+    border-radius: 0.25rem;
+    width: 3rem;
+    margin: 3px;
+}
+
+.color-gris:hover{
+    background-color: #d6d5d5;
+    border-color: #d6d5d5;
+}
+.boton-general{
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    white-space: break-spaces;
+}
+.boton-general:hover{
+    color: white;
+    
+}
+
+.color-amarillo{
+    background-color: #f1a83d;
+    border-color: #f1a83d;
+}
+.color-amarillo:hover{
+    background-color: #d49535;
+    border-color: #d49535;
+    
+}
+
+.color-azul{
+    background-color:#004f9d;
+    border-color: #004f9d;
+}
+.color-azul:hover{
+    background-color:#014486;
+    border-color: #014486;
+}
+
+.color-verde{
+    background-color:#009d00;
+    border-color: #009d00;
+}
+.color-verde:hover{
+    background-color:#018801;
+    border-color: #018801;
+}

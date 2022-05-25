@@ -1,0 +1,31 @@
+<ng-container *ngIf="showTable">
+    <div class="table-responsive">
+        
+        <div class="container-fluid mb-3"><h1 class="text-center color-titulo font-weight-bold">Cuestionarios</h1></div>
+       
+        <table class="table table-bordered table-hover table-colors">
+                <thead>
+                    <tr>
+                           
+                            <th width="25%">Nombre</th>
+                            <th width="75%">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let cuestionario of cuestionarios">
+                        <tr>
+                    
+                            <td width="25%"><button class="btn align-middle boton-general w-100" (click)="mostrarPreguntas(cuestionario.id)">{{cuestionario.nombre}}</button></td>
+                            <td width="75%">{{cuestionario.descripcion}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+            
+        </div>
+        
+</ng-container>
+
+<ng-container  *ngIf="!showTable">
+    <div class="container p-5 my-3 color-error"><p class="text-center font-weight-bold">{{errorMessage}}</p></div>
+</ng-container>

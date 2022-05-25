@@ -1,0 +1,56 @@
+
+.color-titulo{
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.color-error{
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+    color: #4d4d4d;
+    font-weight: normal;
+}
+
+.card-colors{
+    background-color: white;
+    color: black;
+    font-weight: normal;
+}
+
+.boton-general{
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+.boton-general:hover{
+    color: white;
+    
+}
+
+.color-amarillo{
+    background-color: #f1a83d;
+    border-color: #f1a83d;
+}
+.color-amarillo:hover{
+    background-color: #d49535;
+    border-color: #d49535;
+    
+}
+
+.color-azul{
+    background-color:#004f9d;
+    border-color: #004f9d;
+}
+.color-azul:hover{
+    background-color:#014486;
+    border-color: #014486;
+}
+
+.color-verde{
+    background-color:#009d00;
+    border-color: #009d00;
+}
+.color-verde:hover{
+    background-color:#018801;
+    border-color: #018801;
+}

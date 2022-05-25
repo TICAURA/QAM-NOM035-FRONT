@@ -1,0 +1,92 @@
+<ng-container *ngIf="showTable">
+    <div class="">
+      <div class="row">
+        <div class="col-xl-1 col-md-1">
+          <img src="./assets/back-3.png" height="25px" width="25px" (click)="salir()">
+        </div>
+      </div>
+
+            <div class="container-fluid mb-3"><h1 class="text-center font-weight-bold">Preguntas</h1></div>
+
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn w-100" (click)="changeMenu()" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Menu
+                      </button>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse hide" [ngClass]="['collapse',menuHide===true?'hide':'show']" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class=" flex-wrap" role="toolbar" aria-label="Preguntas">
+                            <div class=" flex-wrap mr-2 box-flex" role="group" aria-label="Grupo de Preguntas">
+                                    <ng-container *ngFor="let pregunta of preguntas | keyvalue" >
+                                          <button  type="button" class="button-size boton-general" (click)="changePregunta(pregunta.value.id)" [ngClass]="getColor(pregunta.value)">{{pregunta.value.id}}</button>
+                                    </ng-container>
+                            </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+           
+        
+            <br>
+            <br>
+    
+                    <ng-container *ngIf="!skip">
+                   <div class="row">
+
+                        <div class="col-xl-12 "><h3 class="font-weight-bold">{{pregunta.id+'. '+pregunta.pregunta}}</h3></div>
+
+                        <div class="col-xl-12"><br></div>
+                        <div class="col-xl-3"></div>
+                        <div class="col-xl-6 justify-content-center">
+                      
+                        <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            (change)='createAnswer()'
+                            [(ngModel)]="pregunta.respuesta">
+                            <mat-radio-button class="example-radio-button" *ngFor="let tipo of tipoRespuestas | keyvalue" [value]="tipo.key">
+                              {{tipo.value}}
+                            </mat-radio-button>
+                          </mat-radio-group>
+                        
+                       </div>
+                       <div class="col-xl-3"></div>
+                    </div>
+                    </ng-container>
+                    <ng-container *ngIf="skip">
+                        <div class="container text-white"><h1 class="text-center font-weight-bold">No es necesario responder esta pregunta, porfavor continue.</h1></div>
+                    </ng-container>
+                    <br>
+                    <br>
+             <div class="row">
+                
+              <ng-container *ngIf="pregunta.respondida || skip">
+                <div class="col-xl-6 col-md-12"><button class="btn w-100 boton-general color-amarillo" (click)="siguientePregunta()">Siguiente</button> </div>
+                 <div class="col-xl-12"><br></div>
+              </ng-container>
+
+                 <div class="col-xl-6 col-md-12"><button class="btn w-100 boton-general color-amarillo" (click)="anteriorPregunta()">Anterior</button> </div>
+                <div class="col-xl-12"><br></div>
+
+                <ng-container *ngIf="showExitButton">
+                  <div class="col-xl-6 col-md-12"><button class="btn w-100 boton-general color-amarillo" (click)="salir()">Salir</button> </div>
+                   <div class="col-xl-12"><br></div>
+                </ng-container> 
+           
+             
+            </div>
+            
+        </div>
+        
+</ng-container>
+
+<ng-container  *ngIf="!showTable">
+    <div class="container p-5 my-3 color-error"><p class="text-center font-weight-bold">{{errorMessage}}</p></div>
+</ng-container>
+
