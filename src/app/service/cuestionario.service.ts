@@ -40,5 +40,31 @@ export class CuestionarioService {
     const jsonBody:string = JSON.stringify(body);
     this.httpSenderService.makeHttpRequest(endpoint,method,successCallback,errorCallback,jsonBody);
   }
+  getSacOrJefe(cuestionarioId:number,successCallback:any,errorCallback:any){
+
+    const endpoint:string = `/sac-jefe/${cuestionarioId}`;
+    const method:string = 'GET';
+    this.httpSenderService.makeHttpRequest(endpoint,method,successCallback,errorCallback,undefined);
+
+  }
+
+  updateCompletarCuestionario(cuestionarioId:number,successCallback:any,errorCallback:any){
+
+    const endpoint:string = `/completar/${cuestionarioId}`;
+    const method:string = 'GET';
+    this.httpSenderService.makeHttpRequest(endpoint,method,successCallback,errorCallback,undefined);
+
+  }
+
+
+  updateSacJefe(body:any,successCallback:any,errorCallback:any){
+    
+    const endpoint:string = "/update-sac-jefe";
+    const method:string = 'POST';
+    const jsonBody:string = JSON.stringify(body);
+    this.httpSenderService.makeHttpRequest(endpoint,method,successCallback,errorCallback,jsonBody);
+  }
+
+
 
 }

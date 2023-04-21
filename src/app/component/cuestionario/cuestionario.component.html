@@ -11,7 +11,7 @@
                         <h5 class="card-title">{{cuestionario.nombre}}</h5>
                         <br>
                         <p class="card-text">{{cuestionario.descripcion}}</p>
-                        <button (click)="mostrarPreguntas(cuestionario.id)" [ngClass]="['w-100','btn',cuestionario.total === cuestionario.respondidas? 'color-verde' : 'color-amarillo']">
+                        <button [disabled]="cuestionario.completo" (click)="mostrarPreguntas(cuestionario.id)" [ngClass]="['w-100','btn',cuestionario.completo ? 'color-verde' : 'color-amarillo']">
                             {{"Ingresar "+cuestionario.respondidas+"/"+cuestionario.total}}
                         </button>
                         </div>

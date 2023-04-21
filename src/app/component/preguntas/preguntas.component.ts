@@ -29,6 +29,7 @@ export class PreguntasComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.cuestionario = params['cuestionario'];
       this.cuestionarioService.getPreguntas(this.cuestionario, this.getPreguntas, this.callFailure);
+      this.cuestionarioService.getSacOrJefe(this.cuestionario,this.getSacOrJefe,this.callFailure);
     });
   }
 
@@ -62,6 +63,10 @@ export class PreguntasComponent implements OnInit {
     this.menuHide = !this.menuHide;
   }
 
+  private getSacOrJefe = (content: any): void => {
+    this.sac = content.sac;
+    this.jefe= content.jefe;
+  }
   private getPreguntas = (content: any): void => {
 
     content.forEach((element: any) => {
@@ -137,6 +142,7 @@ export class PreguntasComponent implements OnInit {
       this.showExitButton = true;
       if (this.showMensajeAgradecimiento) {
         alert("Usted ha respondido todas las preguntas, gracias por su participación.");
+        this.cuestionarioService.updateCompletarCuestionario(this.cuestionario,()=>{},this.callFailure);
         this.showMensajeAgradecimiento = false;
       }
     }
@@ -154,6 +160,8 @@ export class PreguntasComponent implements OnInit {
 
   public getColor(pregunta: Pregunta): string {
     if (this.pregunta.id === pregunta.id) { return 'color-azul'; }
+    if(pregunta.servicioAlCliente && this.sac == PreguntaEnum.INVALIDO ){return 'color-verde';}
+    if(pregunta.jefe && this.jefe == PreguntaEnum.INVALIDO){return 'color-verde';}
     return pregunta.respondida ? 'color-verde' : 'color-amarillo';
   }
 
@@ -232,9 +240,22 @@ export class PreguntasComponent implements OnInit {
         dialogRef.afterClosed().subscribe(dialogResult => {
           if (dialogResult) {
             this.sac = PreguntaEnum.VALIDO;
+            this.cuestionarioService.updateSacJefe({idCuestionario:this.cuestionario,typeSacOrJefe:0,valueSacOrJefe:1},()=>{},this.callFailure);
+
           } else {
             this.sac = PreguntaEnum.INVALIDO;
             this.skip = true;
+            this.cuestionarioService.updateSacJefe({idCuestionario:this.cuestionario,typeSacOrJefe:0,valueSacOrJefe:2},()=>{},this.callFailure);
+
+            if (this.validarPreguntas()) {
+              this.showExitButton = true;
+              if (this.showMensajeAgradecimiento) {
+                alert("Usted ha respondido todas las preguntas, gracias por su participación.");
+                this.cuestionarioService.updateCompletarCuestionario(this.cuestionario,()=>{},this.callFailure);
+                this.showMensajeAgradecimiento = false;
+              }
+            }
+        
           }
         });
 
@@ -260,9 +281,23 @@ export class PreguntasComponent implements OnInit {
         dialogRef.afterClosed().subscribe(dialogResult => {
           if (dialogResult) {
             this.jefe = PreguntaEnum.VALIDO;
+            this.cuestionarioService.updateSacJefe({idCuestionario:this.cuestionario,typeSacOrJefe:1,valueSacOrJefe:1},()=>{},this.callFailure);
           } else {
             this.jefe = PreguntaEnum.INVALIDO;
             this.skip = true;
+            this.cuestionarioService.updateSacJefe({idCuestionario:this.cuestionario,typeSacOrJefe:1,valueSacOrJefe:2},()=>{},this.callFailure);
+
+            if (this.validarPreguntas()) {
+              this.showExitButton = true;
+              if (this.showMensajeAgradecimiento) {
+                alert("Usted ha respondido todas las preguntas, gracias por su participación.");
+                this.cuestionarioService.updateCompletarCuestionario(this.cuestionario,()=>{},this.callFailure);
+                this.showMensajeAgradecimiento = false;
+              }
+            }
+        
+
+
           }
         });
 
@@ -272,6 +307,7 @@ export class PreguntasComponent implements OnInit {
 
     }
   }
+
 
 
   private callFailure = (content: any, error: Errors): void => { this.showTable = false; this.errorMessage = error; }
